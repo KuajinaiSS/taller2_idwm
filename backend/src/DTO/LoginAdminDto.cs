@@ -1,6 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 namespace backend.src.DTO
 
+// entrada para el login sera el Username y Password
+
 {
     public class LoginAdminDto
     {

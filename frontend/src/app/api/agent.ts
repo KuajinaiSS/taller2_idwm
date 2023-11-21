@@ -16,6 +16,7 @@ const requests = {
 // peticiones a la api
 const Auth = {
     register:(form: any) => requests.post("user/register", form),
+    login:(form: any) => requests.post("auth/login", form)
 }
 
 
