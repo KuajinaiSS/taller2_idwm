@@ -1,4 +1,4 @@
-# Proyecto con .NET 7 SDK
+# Taller 2
 
 Este proyecto utiliza .NET 7 SDK y está configurado con las dependencias necesarias a través de NuGet para su funcionamiento adecuado.
 
