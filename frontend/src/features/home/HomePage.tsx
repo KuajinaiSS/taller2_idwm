@@ -87,6 +87,7 @@ const HomePage = () => {
         .then(response => {
             console.log(response); // Manejo de la respuesta exitosa
             setCurrentClient(defaultClient);
+            setClients(clients.map(c => (c.rut === client.rut ? client : c)));
             setIsEditFormOpen(false);
         })
         .catch(error => {
@@ -112,10 +113,10 @@ const HomePage = () => {
     // CREATE CLIENT
     const [isCreateFormOpen, setIsCreateFormOpen] = useState<boolean>(false);
 
-    const handleCreateClient = async (client: any) => {
+    const handleCreateClient = async (client: Client) => {
         agent.Clients.create(client)
             .then(data => {
-
+                setClients([...clients, client]);
                 console.log("Cliente creado exitosamente", data);
             }).catch(error => {
                 console.log(error);

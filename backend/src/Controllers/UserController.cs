@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using backend.src.Data;
 using backend.src.DTO;
 using backend.src.Models;
@@ -29,6 +30,7 @@ namespace backend.src.Controllers
             // Buscamos si ya existe un cliente con el mismo email o rut
             var existingClient = await _context.Clientes.FirstOrDefaultAsync(c => c.Email == registerClientDto.Email || c.Rut == registerClientDto.Rut);
             if (existingClient != null) return Conflict("Email o RUT ya registrado");
+            if (!IsValidEmail(registerClientDto.Email)) return Conflict("El formato del correo electrónico no es válido");
 
 
             var usuario = new Cliente()
@@ -123,17 +125,43 @@ namespace backend.src.Controllers
         {
             var cliente = await _context.Clientes.FirstOrDefaultAsync(c => c.Rut == rut);
             if (cliente == null) return NotFound("Cliente no encontrado");
+            if (!IsValidEmail(updateClientDto.Email)) return Conflict("El formato del correo electrónico no es válido");
+            Console.WriteLine(updateClientDto.Email);
 
             cliente.First_name = updateClientDto.First_name;
             cliente.Last_name = updateClientDto.Last_name;
             cliente.Email = updateClientDto.Email;
             cliente.Puntos = updateClientDto.Puntos;
-
             await _context.SaveChangesAsync();
             return Ok("Cliente actualizado");
         }
-        
 
-        
+
+
+        // Función para validar el formato del correo electrónico
+        private bool IsValidEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                return false;
+            }
+            try
+            {
+                // Utilizando una expresión regular para validar el formato del correo electrónico
+                return Regex.IsMatch(
+                    email,
+                    @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$",
+                    RegexOptions.IgnoreCase
+                );
+            }
+            catch (RegexMatchTimeoutException)
+            {
+                return false;
+            }
+
+
+
+
+        }
     }
 }

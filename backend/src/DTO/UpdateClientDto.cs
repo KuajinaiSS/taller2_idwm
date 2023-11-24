@@ -11,10 +11,6 @@ namespace backend.src.DTO
         public string Last_name { get; set; } = string.Empty;
 
 
-        [Required (ErrorMessage = "El campo Rut es obligatorio para registrar un cliente")]
-        public string Rut { get; set; } = string.Empty;
-
-
         [Required (ErrorMessage = "El campo Email es obligatorio para registrar un cliente")]
         [EmailAddress (ErrorMessage = "El Email debe ser una dirección de correo electrónico válida")]
         public string Email { get; set; } = string.Empty;
