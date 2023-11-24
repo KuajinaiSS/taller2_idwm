@@ -36,7 +36,7 @@ dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer --version 7.0.1
 
 #### Uso del Backend
 
-1. Inicia el servidor de desarrollo: `dotnet run`
+1. Inicia el servidor de desarrollo: `dotnet watch --no-hot-reload`
 2. Abre tu navegador en `http://localhost:5019/swagger/index.html` para ver la aplicación en ejecución
 
 
@@ -47,7 +47,7 @@ dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer --version 7.0.1
 - Node.js y npm instalados
 
 #### Instalación del Frontend
-1. Accede al directorio del frontend: `cd frontend`
+1. Accede al directorio del frontend: `cd ..\frontend\ `
 2. Instala las dependencias: `npm install`
 
 ### Instalación de dependencias
