@@ -5,7 +5,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Client } from '../../app/models/Client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 // definimos lo que va a recibir el componente
@@ -18,6 +18,8 @@ interface Props {
 
 // recordar colocar el tipo de dato que va a recibir el componente del Props
 const CreateUserForm = ({ isOpen, initialClient, handleClickClose, handdleCreateClient }: Props ) => {
+           // crearemos el user state para el disabled del boton de enviar
+            const [disabled, setDisabled] = useState<boolean>(true);
 
 
     const [open, setOpen] = useState(isOpen);
@@ -26,6 +28,19 @@ const CreateUserForm = ({ isOpen, initialClient, handleClickClose, handdleCreate
     const handleClientChange = (event: any) => {
         setClient({ ...client, [event.target.id]: event.target.value });
     }
+
+    const isFormFilled = () => {
+        return (
+            client.first_name.trim() !== '' &&
+            client.last_name.trim() !== '' &&
+            client.email.trim() !== '' &&
+            client.rut.trim() !== ''
+        );
+    };
+
+    useEffect(() => {
+        setDisabled(!isFormFilled());
+    }, [client]);
 
     const handleClose = () => {
         setOpen(false);
@@ -83,7 +98,7 @@ const CreateUserForm = ({ isOpen, initialClient, handleClickClose, handdleCreate
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Cancelar</Button>
-                    <Button onClick={() => handdleCreateClient(client)}>Crear</Button>
+                    <Button disabled={disabled} onClick={() => handdleCreateClient(client)}>Crear</Button>
                 </DialogActions>
             </Dialog>
         </>

@@ -18,7 +18,7 @@ const LoginPage = () => {
         }
     }, [navigate, setAuthenticated]);
 
-    
+
 
 
     // EXPRESION REGULAR GENERICA USERNAME Y PASSWORD
@@ -58,7 +58,7 @@ const LoginPage = () => {
     // el User y el Password tienen que ser los mismos que estan en el backend (DTO)
     const sendData = (User: string, Password: string) => {
         setLoading(true);
-        
+
 
         agent.Auth.login({ User, Password })
             .then((data) => {
@@ -84,7 +84,7 @@ const LoginPage = () => {
     // esta funcion es para que no se recargue la pagina al enviar el formulario y que se vea en la consola
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        
+
 
         const data = new FormData(event.currentTarget);
         const username = data.get("username")?.toString() ?? "";
@@ -169,7 +169,7 @@ const LoginPage = () => {
                         Iniciar Sesión
                     </LoadingButton>
 
-                    {Credentialerror &&(
+                    {Credentialerror && (
                         <Alert severity="error" variant="standard" >
                             <strong>Credenciales Inválidas</strong>
                         </Alert>

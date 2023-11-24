@@ -6,7 +6,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Client } from '../../app/models/Client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 // definimos lo que va a recibir el componente
@@ -21,6 +21,9 @@ interface Props {
 // recordar colocar el tipo de dato que va a recibir el componente del Props
 const EditUserForm = ({ isOpen, initialClient, handleClickClose, handdleEditClient }: Props ) => {
 
+    // crearemos el user state para el disabled del boton de enviar
+    const [disabled, setDisabled] = useState<boolean>(true);
+
 
     const [open, setOpen] = useState(isOpen);
     const [client, setClient] = useState<Client>(initialClient);
@@ -29,10 +32,25 @@ const EditUserForm = ({ isOpen, initialClient, handleClickClose, handdleEditClie
         setClient({ ...client, [event.target.id]: event.target.value });
     }
 
+    const isFormFilled = () => {
+        return (
+            client.first_name.trim() !== '' &&
+            client.last_name.trim() !== '' &&
+            client.email.trim() !== '' &&
+            client.puntos !== 0
+        );
+    };
+    useEffect(() => {
+        setDisabled(!isFormFilled());
+    }, [client]);
+
+
     const handleClose = () => {
         setOpen(false);
         handleClickClose();
     };
+
+
 
 
     return (
@@ -66,6 +84,7 @@ const EditUserForm = ({ isOpen, initialClient, handleClickClose, handdleEditClie
                         id="email"
                         label="Email"
                         fullWidth
+                        type='email'
                         variant="standard"
                         value={client.email}
                         onChange={e => handleClientChange(e)}
@@ -76,6 +95,7 @@ const EditUserForm = ({ isOpen, initialClient, handleClickClose, handdleEditClie
                         id="puntos"
                         label="Puntos"
                         fullWidth
+                        type='number'
                         variant="standard"
                         value={client.puntos}
                         onChange={e => handleClientChange(e)}
@@ -84,7 +104,7 @@ const EditUserForm = ({ isOpen, initialClient, handleClickClose, handdleEditClie
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Cancelar</Button>
-                    <Button onClick={() => handdleEditClient(client)}>Actualizar</Button>
+                    <Button disabled={disabled} onClick={() => handdleEditClient(client)}>Actualizar</Button>
                 </DialogActions>
             </Dialog>
         </>
