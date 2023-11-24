@@ -1,6 +1,8 @@
-namespace backend.src.Models
+// sin usar por que no existe password que filtrar por el momento
+
+namespace backend.src.DTO
 {
-    public class Cliente
+    public class UserDTO
     {
         public int Id { get; set; }
 

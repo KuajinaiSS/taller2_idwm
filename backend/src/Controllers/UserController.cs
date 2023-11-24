@@ -1,6 +1,7 @@
 using backend.src.Data;
 using backend.src.DTO;
 using backend.src.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -49,6 +50,7 @@ namespace backend.src.Controllers
 
         // DESPLIEGUA A TODOS LOS CLIENTES
         // http://localhost:5019/api/user/AllClients
+        // [Authorize]
         [HttpGet("AllClients")]
         public async Task<ActionResult<List<Cliente>>> AllClients()
         {
@@ -79,7 +81,6 @@ namespace backend.src.Controllers
             if (cliente == null) return NotFound("Cliente no encontrado");
             return cliente;
         }
-
 
 
 

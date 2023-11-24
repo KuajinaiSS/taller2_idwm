@@ -27,6 +27,7 @@ namespace backend.src.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<LoginResponseDto>> Login(LoginAdminDto loginAdminDto)
         {
+            Thread.Sleep(1000);
             var respuesta = await _authService.Login(loginAdminDto);
             if (respuesta is null) return BadRequest("Credenciales inválidas");
             return Ok(respuesta);

@@ -5,29 +5,37 @@ import { AuthContext } from "../context/AuthContext";
 import LoginPage from "../../features/Auth/LoginPage";
 import HomePage from "../../features/home/HomePage";
 import ErrorPage from "../layout/ErrorPage";
+import Navbar from "../layout/Navbar";
 
 type Props = {};
 
 const PrivateRoutes = () => {
     const { authenticated } = useContext(AuthContext);
     if (!authenticated) return <Navigate to="/login" replace />;
-    else return <Outlet />;
+    
+    else return(
+    <>
+        <Navbar />
+        <Outlet />;
+    </>
+    )
 };
 
 const Routes = (props: Props) => {
-    const { authenticated } = useContext(AuthContext);
+
     return (
         <Router>
 
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/error" element={<ErrorPage/>}></Route>
-
+            <Route path="/error" element={<ErrorPage/>}/>
+            <Route path="/" element={ <HomePage/> }/>
 
             <Route element={<PrivateRoutes />}>
                 <Route path="/home" element={<HomePage />} />
             </Route>
 
-            <Route path="*" element={<Navigate to="/error" replace/> } />
+            <Route path="*" element={ <ErrorPage/> } />
+            
 
         </Router>
     );

@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using backend.src.DTO;
 
 namespace backend.src.Services.Interfaces
@@ -16,8 +12,5 @@ namespace backend.src.Services.Interfaces
         /// <returns>Objeto LoginResponseDto con el token de autenticación y el usuario.</returns>
         Task<LoginResponseDto> Login(LoginAdminDto loginAdminDto);
 
-
-
-        
     }
 }

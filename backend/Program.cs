@@ -1,20 +1,25 @@
 using System.Text;
 using backend.src.Data;
+using backend.src.Services;
+using backend.src.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins"; // Modificado por mi 
 var builder = WebApplication.CreateBuilder(args);
 
+// Agrega servicios al contenedor.
+builder.Services.AddScoped<IAuthService, AuthService>();
+
 builder.Services.AddCors(options =>// Modificado por mi 
 {
     options.AddPolicy(name: MyAllowSpecificOrigins,
-                      policy =>
-                      {
-                          policy.WithOrigins("http://localhost:3000")// http://localhost:5144 colocamos donde se levanto react
-                                                  .AllowAnyHeader()
-                                                  .AllowAnyMethod();
-                      });
+                    policy =>
+                    {
+                        policy.WithOrigins("http://localhost:3000")// http://localhost:5144 colocamos donde se levanto react
+                                                .AllowAnyHeader()
+                                                .AllowAnyMethod();
+                    });
 });
 
 // Add services to the container.
@@ -51,6 +56,10 @@ builder.Services.AddAuthentication().AddJwtBearer(opt =>
 // Modificado por mi
 // Inyectamos la base de datos (Data Context) a partes de la aplicacion donde se necesite (Controllers)
 builder.Services.AddDbContext<DataContext>(opt => opt.UseSqlite("Data Source=DumboDB.db"));
+
+// DEPENDENCIAS
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 
 
 /****************************************************************************************

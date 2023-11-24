@@ -49,7 +49,7 @@ namespace backend.src.Services
             var loginResponse = new LoginResponseDto
             {
                 Token = token,
-                User = admin.User.ToString(),
+                User = admin.User
             };
 
             return loginResponse;
