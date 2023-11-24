@@ -1,0 +1,322 @@
+{
+	"info": {
+		"_postman_id": "ef3941a9-c974-4165-a97d-fe8349e0984b",
+		"name": "Taller_Dumbo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29739139"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Login Admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": \"Ochietto\",\r\n    \"password\": \"Jaqamain3pals\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5019/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5019",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Register client",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"first_name\": \"Ignacio\",\r\n  \"last_name\": \"Umaña\",\r\n  \"rut\": \"207344842\",\r\n  \"email\": \"Ignacio@example.com\",\r\n  \"puntos\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5019/api/user/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5019",
+							"path": [
+								"api",
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all clients",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJBZG1pbiI6Ik9jaGlldHRvIiwiZXhwIjoxNzAwNzI2MzAzfQ.PcghJ2F7IrOWZxNJARYuPL9J4JQwYwyNZmjUxbt-rFo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5019/api/user/AllClients",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5019",
+							"path": [
+								"api",
+								"user",
+								"AllClients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get client by Rut",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "rut",
+									"value": "207344842",
+									"description": "f",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5019/api/user/getClientRut/:rut?207344842",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5019",
+							"path": [
+								"api",
+								"user",
+								"getClientRut",
+								":rut"
+							],
+							"query": [
+								{
+									"key": "207344842",
+									"value": null
+								}
+							],
+							"variable": [
+								{
+									"key": "rut",
+									"value": "207344842"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get client by Email",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5019/api/user/getClientEmail/:email",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5019",
+							"path": [
+								"api",
+								"user",
+								"getClientEmail",
+								":email"
+							],
+							"variable": [
+								{
+									"key": "email",
+									"value": "Ignacio@example.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete client by Rut",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5019/api/user/deleteClient/:rut?string=207344842",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5019",
+							"path": [
+								"api",
+								"user",
+								"deleteClient",
+								":rut"
+							],
+							"query": [
+								{
+									"key": "string",
+									"value": "207344842"
+								}
+							],
+							"variable": [
+								{
+									"key": "rut",
+									"value": "207344842"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete client by Email",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5019/api/user/deleteClientEmail/:email",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5019",
+							"path": [
+								"api",
+								"user",
+								"deleteClientEmail",
+								":email"
+							],
+							"variable": [
+								{
+									"key": "email",
+									"value": "Ignacio@example.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"first_name\": \"string\",\r\n  \"last_name\": \"string\",\r\n  \"rut\": \"string\",\r\n  \"email\": \"user@example.com\",\r\n  \"puntos\": 2147483647\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5019/api/user/updateClient/207344842",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5019",
+							"path": [
+								"api",
+								"user",
+								"updateClient",
+								"207344842"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
