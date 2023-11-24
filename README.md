@@ -20,7 +20,6 @@ git clone https://github.com/KuajinaiSS/taller2_idwm
 cd backend
 dotnet restore
 dotnet ef database update
-dotnet run
 ```
 
 ### Instalación de dependencias
@@ -34,6 +33,13 @@ dotnet add package BCrypt.Net-Next --version 4.0.3
 dotnet add package System.IdentityModel.Tokens.Jwt --version 7.0.0
 dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer --version 7.0.11
 ```
+
+#### Uso del Backend
+
+1. Inicia el servidor de desarrollo: `dotnet run`
+2. Abre tu navegador en `http://localhost:5019/swagger/index.html` para ver la aplicación en ejecución
+
+
 ## FRONTEND
 
 #### Requisitos del Frontend
