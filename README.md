@@ -15,13 +15,13 @@ Este proyecto utiliza .NET 7 SDK y está configurado con las dependencias necesa
 
 1. Clona el repositorio:
 
-   ```bash
-   git clone https://github.com/KuajinaiSS/taller2_idwm
-   cd backend
-   dotnet restore
-   dotnet ef database update
-   dotnet run
-   ```
+```bash
+git clone https://github.com/KuajinaiSS/taller2_idwm
+cd backend
+dotnet restore
+dotnet ef database update
+dotnet run
+```
 
 ### Instalación de dependencias
 
@@ -43,6 +43,16 @@ dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer --version 7.0.1
 #### Instalación del Frontend
 1. Accede al directorio del frontend: `cd frontend`
 2. Instala las dependencias: `npm install`
+
+### Instalación de dependencias
+
+```bash
+npm i axios
+npm i react-router-dom
+npm install @mui/material @emotion/react @emotion/styled
+npm install @fontsource/roboto
+npm install @mui/icons-material
+```
 
 #### Uso del Frontend
 
