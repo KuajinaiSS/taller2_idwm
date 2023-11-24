@@ -28,10 +28,10 @@ const Routes = (props: Props) => {
 
             <Route path="/login" element={<LoginPage />} />
             <Route path="/error" element={<ErrorPage/>}/>
-            <Route path="/" element={ <HomePage/> }/>
+            <Route path="/" element={ <LoginPage/> }/>
 
             <Route element={<PrivateRoutes />}>
-                <Route path="/home" element={<HomePage />} />
+                <Route path="/home" element={ <HomePage />} />
             </Route>
 
             <Route path="*" element={ <ErrorPage/> } />

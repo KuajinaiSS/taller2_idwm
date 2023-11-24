@@ -116,25 +116,24 @@ namespace backend.src.Controllers
         }
 
 
-
-
-
         // ACTUALIZA LOS DATOS DEL CLIENTE
-        // TODO validar que pasa si solo modifico un campo
-        // [HttpPut("updateClient/{rut}")]
-        // public async Task<ActionResult<Cliente>> UpdateClient(string rut)
-        // {
-        //     var clienteToUpdate = await _context.Clientes.FirstOrDefaultAsync(c => c.Rut == rut);
-        //     if (clienteToUpdate == null) return NotFound("Cliente no encontrado");
+        // http://localhost:5019/api/user/updateClient/{rut}
+        [HttpPut("updateClient/{rut}")]
+        public async Task<ActionResult<Cliente>> UpdateClient(string rut, UpdateClientDto updateClientDto)
+        {
+            var cliente = await _context.Clientes.FirstOrDefaultAsync(c => c.Rut == rut);
+            if (cliente == null) return NotFound("Cliente no encontrado");
 
+            cliente.First_name = updateClientDto.First_name;
+            cliente.Last_name = updateClientDto.Last_name;
+            cliente.Email = updateClientDto.Email;
+            cliente.Puntos = updateClientDto.Puntos;
 
-        //     clienteToUpdate.First_name = 
-        //     clienteToUpdate.Last_name = cliente.Last_name;
-        //     clienteToUpdate.Email = cliente.Email;
-        //     clienteToUpdate.Puntos = cliente.Puntos;
+            await _context.SaveChangesAsync();
+            return Ok("Cliente actualizado");
+        }
+        
 
-        //     await _context.SaveChangesAsync();
-        //     return clienteToUpdate;
-        // }
+        
     }
 }

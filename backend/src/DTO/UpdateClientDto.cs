@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 namespace backend.src.DTO
 {
-    public class RegisterClientDto
+    public class UpdateClientDto    
     {
         [Required (ErrorMessage = "El campo Nombre es obligatorio para registrar un cliente")]
         public string First_name { get; set; } = string.Empty;

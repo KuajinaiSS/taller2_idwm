@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -14,12 +13,11 @@ interface Props {
     isOpen: boolean;
     initialClient: Client;
     handleClickClose: () => void;
-    handdleEditClient: (client : Client) => void;
+    handdleCreateClient: (client : Client) => void;
 }
 
-
 // recordar colocar el tipo de dato que va a recibir el componente del Props
-const EditUserForm = ({ isOpen, initialClient, handleClickClose, handdleEditClient }: Props ) => {
+const CreateUserForm = ({ isOpen, initialClient, handleClickClose, handdleCreateClient }: Props ) => {
 
 
     const [open, setOpen] = useState(isOpen);
@@ -35,19 +33,20 @@ const EditUserForm = ({ isOpen, initialClient, handleClickClose, handdleEditClie
     };
 
 
+
     return (
         <>
             <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Editar Cliente {initialClient.id}</DialogTitle>
+                <DialogTitle>Crear Cliente</DialogTitle>
                 <DialogContent>
                     <TextField
                         autoFocus
                         margin="dense"
                         id="first_name"
                         label="Nombre"
+                        type="email"
                         fullWidth
                         variant="standard"
-                        value={client.first_name}
                         onChange={e => handleClientChange(e)}
                     />
 
@@ -55,9 +54,9 @@ const EditUserForm = ({ isOpen, initialClient, handleClickClose, handdleEditClie
                         margin="dense"
                         id="last_name"
                         label="Apellido"
+                        type="email"
                         fullWidth
                         variant="standard"
-                        value={client.last_name}
                         onChange={e => handleClientChange(e)}
                     />
 
@@ -65,30 +64,30 @@ const EditUserForm = ({ isOpen, initialClient, handleClickClose, handdleEditClie
                         margin="dense"
                         id="email"
                         label="Email"
+                        type="email"
                         fullWidth
                         variant="standard"
-                        value={client.email}
                         onChange={e => handleClientChange(e)}
                     />
 
                     <TextField
                         margin="dense"
-                        id="puntos"
-                        label="Puntos"
+                        id="rut"
+                        label="Rut"
+                        type="email"
                         fullWidth
                         variant="standard"
-                        value={client.puntos}
                         onChange={e => handleClientChange(e)}
                     />
-                    
+
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Cancelar</Button>
-                    <Button onClick={() => handdleEditClient(client)}>Actualizar</Button>
+                    <Button onClick={() => handdleCreateClient(client)}>Crear</Button>
                 </DialogActions>
             </Dialog>
         </>
     );
 }
 
-export default EditUserForm;
+export default CreateUserForm;

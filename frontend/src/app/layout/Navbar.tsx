@@ -11,6 +11,7 @@ import { AuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { primaryGreen } from '../constants/colors';
 
+
 const Navbar = () => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const { authenticated, setAuthenticated } = React.useContext(AuthContext);

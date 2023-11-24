@@ -22,7 +22,6 @@ const requests = {
     delete: (url: string) => axios.delete(url).then(responseBody)
 }
 
-// peticiones a la api
 const Auth = {
     register:(form: any) => requests.post("user/register", form),
     login:(form: any) => requests.post("auth/login", form),
@@ -31,12 +30,9 @@ const Auth = {
 const Clients = {
     list: () => requests.get("User/AllClients"),
     delete: (id: string) => requests.delete(`User/DeleteClient/${id}`),
+    create: (client: any) => requests.post("User/register", client),
+    edit: (id: string, updatedClient: any) => requests.put(`User/updateClient/${id}`, updatedClient),
 }
 
-
-// exportamos las peticiones
 const agent = { Auth, Clients };
-
-
-// exportamos el agente
 export default agent;
